@@ -1,8 +1,10 @@
 name: Releaser
 
 on:
-  push:
-    tags:
+ schedule:
+    - cron: '0 22,10,4 * * *'  # +8时区的
+ workflow_dispatch:
+  
       - '*'
       
 permissions:
@@ -10,7 +12,8 @@ permissions:
   packages: write
 
 jobs:
-  releaser:
+   push:
+    releaser:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
